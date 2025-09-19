@@ -149,7 +149,12 @@ if (signupBtn) {
         try {
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
             await updateProfile(userCredential.user, { displayName: name });
+
+            await signOut(auth)
+
             closeModalAndClear();
+
+            openModal("login");
         }
         catch (err) {
             console.error(err);
@@ -173,6 +178,7 @@ if (loginBtn) {
         try {
             await signInWithEmailAndPassword(auth, email, password);
             closeModalAndClear();
+            window.location.href = "index.html";
         }
         catch (err) {
             console.error(err);
