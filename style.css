@@ -131,6 +131,128 @@ body {
 }
 
 /* home */
+
+.hidden { 
+   display: none !important; 
+}
+
+#user-greeting,
+#logout-link {
+  display: none;
+}
+
+
+
+.auth-error {
+  color: #c0392b;
+  font-size: 13px;
+  margin: 6px 0 0;
+  min-height: 18px;
+}
+
+
+.auth-toggle {
+  margin-top: 12px;
+  font-size: 14px;
+}
+.auth-toggle a {
+  color: #088178;
+  text-decoration: none;
+}
+.auth-toggle a:hover { text-decoration: underline; }
+
+
+#user-greeting a {
+  color: white;
+  pointer-events: auto;
+}
+
+
+#auth-section {
+  position: relative;
+}
+
+
+#auth-modal {
+  display: none; /* by default hidden */
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+
+.auth-box {
+  background: #fff;
+  padding: 25px 20px;
+  border-radius: 12px;
+  width: 320px;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.auth-box h2 {
+  margin-bottom: 15px;
+  font-size: 22px;
+  color: #333;
+}
+
+
+.auth-box input {
+  width: 90%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+  transition: border 0.2s;
+}
+.auth-box input:focus {
+  border-color: #088178;
+}
+
+.auth-buttons {
+  margin-top: 10px;
+}
+.auth-buttons button {
+  margin: 5px;
+  padding: 10px 15px;
+  border: none;
+  background: #333;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s;
+}
+.auth-buttons button:hover {
+  background: #088178;
+}
+
+/* Close button */
+.close-btn {
+  margin-top: 15px;
+  padding: 10px 15px;
+  border-radius: 6px;
+  border: none;
+  color: #fff;
+  background: #e74c3c;
+}
+.close-btn:hover {
+  background: #c0392b;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
 #hero{
     background: url(img/hero4.png);
     height: 90vh;

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,31 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyDDof0U8L3KYtrohPHS4s2jixJrKu-2RWo",
+            authDomain: "cara-8685a.firebaseapp.com",
+            projectId: "cara-8685a",
+            storageBucket: "cara-8685a.firebasestorage.app",
+            messagingSenderId: "105584726686",
+            appId: "1:105584726686:web:1f271464b6723499bf618f",
+            measurementId: "G-LXXS4BK2BR"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+    </script>
     <section id="header">
         <a href="#"><img src="img/logo.png" class="logo" alt=""></a>
 
@@ -19,6 +44,9 @@
                 <li><a href="about.html">About</a></li>
                 <li><a href="contact.html">Contact</a></li>
                 <li id="lg-bag"><a href="cart.html"><i class="far fa-shopping-bag"></i></a></li>
+                <li><a href="#" id="login-link">Login</a></li>
+                <li id="user-greeting" style="display:none;"><a href="#" id="user-name"></a></li>
+                <li><a href="#" id="logout-link" style="display: none; cursor: pointer;"><i class="fas fa-sign-out-alt"></i></a></li>
                 <a href="" id="close"><i class="far fa-times"></i></a>
             </ul>
         </div>
@@ -27,6 +55,37 @@
             <i id="bar" class="fas fa-outdent"></i>
         </div>
     </section>
+
+    <section id="auth-section">
+        <div id="auth-modal">
+            <div class="auth-box">
+                <h2 id="auth-title">Login</h2>
+
+
+                <input type="text" id="auth-name" placeholder="Full name" class="hidden" />
+
+
+                <input type="email" id="auth-email" placeholder="Email" required />
+                <input type="password" id="auth-password" placeholder="Password" required />
+
+
+                <p id="auth-error" class="auth-error"></p>
+
+                <div class="auth-buttons">
+                    <button id="login-btn">Login</button>
+                    <button id="signup-btn" class="hidden">Sign Up</button>
+                </div>
+
+                <p class="auth-toggle">
+                    <a href="#" id="auth-toggle">Don't have an account? Sign up</a>
+                </p>
+
+                <button id="close-modal" class="close-btn normal">Close</button>
+            </div>
+        </div>
+    </section>
+
+
 
     <section id="hero">
         <h4>Trade-in-offer</h4>
@@ -84,7 +143,7 @@
                 </div>
                 <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
             </div>
-             <div class="pro">
+            <div class="pro">
                 <img src="img/products/f2.jpg" alt="">
                 <div class="des">
                     <span>adidas</span>
@@ -100,7 +159,7 @@
                 </div>
                 <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
             </div>
-             <div class="pro">
+            <div class="pro">
                 <img src="img/products/f3.jpg" alt="">
                 <div class="des">
                     <span>adidas</span>
@@ -116,7 +175,7 @@
                 </div>
                 <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
             </div>
-             <div class="pro">
+            <div class="pro">
                 <img src="img/products/f4.jpg" alt="">
                 <div class="des">
                     <span>adidas</span>
@@ -132,7 +191,7 @@
                 </div>
                 <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
             </div>
-             <div class="pro">
+            <div class="pro">
                 <img src="img/products/f5.jpg" alt="">
                 <div class="des">
                     <span>adidas</span>
@@ -148,7 +207,7 @@
                 </div>
                 <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
             </div>
-             <div class="pro">
+            <div class="pro">
                 <img src="img/products/f6.jpg" alt="">
                 <div class="des">
                     <span>adidas</span>
@@ -164,7 +223,7 @@
                 </div>
                 <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
             </div>
-             <div class="pro">
+            <div class="pro">
                 <img src="img/products/f7.jpg" alt="">
                 <div class="des">
                     <span>adidas</span>
@@ -180,7 +239,7 @@
                 </div>
                 <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
             </div>
-             <div class="pro">
+            <div class="pro">
                 <img src="img/products/f8.jpg" alt="">
                 <div class="des">
                     <span>adidas</span>
@@ -206,7 +265,7 @@
         <button class="normal">Explore More</button>
     </section>
 
-     <section id="product1" class="section-p1">
+    <section id="product1" class="section-p1">
         <h2>New Arrivals</h2>
         <p>Summer Collection New Modern Design</p>
         <div class="pro-container">
@@ -226,7 +285,7 @@
                 </div>
                 <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
             </div>
-             <div class="pro">
+            <div class="pro">
                 <img src="img/products/n2.jpg" alt="">
                 <div class="des">
                     <span>adidas</span>
@@ -242,7 +301,7 @@
                 </div>
                 <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
             </div>
-             <div class="pro">
+            <div class="pro">
                 <img src="img/products/n3.jpg" alt="">
                 <div class="des">
                     <span>adidas</span>
@@ -258,7 +317,7 @@
                 </div>
                 <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
             </div>
-             <div class="pro">
+            <div class="pro">
                 <img src="img/products/n4.jpg" alt="">
                 <div class="des">
                     <span>adidas</span>
@@ -274,7 +333,7 @@
                 </div>
                 <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
             </div>
-             <div class="pro">
+            <div class="pro">
                 <img src="img/products/n5.jpg" alt="">
                 <div class="des">
                     <span>adidas</span>
@@ -290,7 +349,7 @@
                 </div>
                 <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
             </div>
-             <div class="pro">
+            <div class="pro">
                 <img src="img/products/n6.jpg" alt="">
                 <div class="des">
                     <span>adidas</span>
@@ -306,7 +365,7 @@
                 </div>
                 <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
             </div>
-             <div class="pro">
+            <div class="pro">
                 <img src="img/products/n7.jpg" alt="">
                 <div class="des">
                     <span>adidas</span>
@@ -322,7 +381,7 @@
                 </div>
                 <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
             </div>
-             <div class="pro">
+            <div class="pro">
                 <img src="img/products/n8.jpg" alt="">
                 <div class="des">
                     <span>adidas</span>
@@ -349,7 +408,7 @@
             <span>the best classic dress is on sell at cara</span>
             <button class="white">Learn More</button>
         </div>
-         <div class="banner-box banner-box2">
+        <div class="banner-box banner-box2">
             <h4>spring/summer</h4>
             <h2>buy 1 get 1 free</h2>
             <span>the best classic dress is on sell at cara</span>
@@ -358,11 +417,11 @@
     </section>
 
     <section id="banner3">
-         <div class="banner-box">
+        <div class="banner-box">
             <h2>SEASONAL SALE</h2>
             <h3>Winter Collection -50% OFF</h3>
         </div>
-        <div class="banner-box banner-box2" >
+        <div class="banner-box banner-box2">
             <h2>SEASONAL SALE</h2>
             <h3>Winter Collection -50% OFF</h3>
         </div>
@@ -436,6 +495,7 @@
     </footer>
 
 
-    <script src="script.js"></script>
+    <script type="module" src="script.js" defer></script>
 </body>
+
 </html>
