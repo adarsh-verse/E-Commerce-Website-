@@ -1,3 +1,7 @@
+import { apiKey, authDomain, projectId, storageBucket, messagingSenderId, appId, measurementId } from "./env.js";
+import { addContact, auth } from "./firestore.js";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+
 const bar = document.querySelector("#bar");
 const nav = document.querySelector("#navbar");
 const close = document.querySelector("#close")
@@ -11,31 +15,6 @@ if (close) {
         nav.classList.remove('active');
     })
 }
-
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
-import { updateProfile } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
-import {
-    getAuth,
-    createUserWithEmailAndPassword,
-    signInWithEmailAndPassword,
-    signOut,
-    onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
-
-
-
-const firebaseConfig = {
-    apiKey: "AIzaSyDDof0U8L3KYtrohPHS4s2jixJrKu-2RWo",
-    authDomain: "cara-8685a.firebaseapp.com",
-    projectId: "cara-8685a",
-    storageBucket: "cara-8685a.firebasestorage.app",
-    messagingSenderId: "105584726686",
-    appId: "1:105584726686:web:1f271464b6723499bf618f",
-    measurementId: "G-LXXS4BK2BR"
-};
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
 
 const loginLink = document.querySelector("#login-link");
 const logoutLink = document.querySelector("#logout-link");
@@ -245,6 +224,40 @@ onAuthStateChanged(auth , (user)=>{
     }
 })
 
+// form submission 
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.querySelector("#contactForm");
+
+  if (!form) return;
+
+ const submitBtn = form.querySelector("#btn");
+
+ form.addEventListener("submit", (e)=>{
+    e.preventDefault();
+
+    const name = document.querySelector("#name").value.trim();
+    const email = document.querySelector("#email").value.trim();
+    const subject = document.querySelector("#subject").value.trim();
+    const message = document.querySelector("#message").value.trim();
+
+    if (!name || !email || !message) {
+      alert(" Please fill all required fields");
+      return;
+    }
+
+    try{
+        console.log("function called");
+        addContact(name, email, subject, message);
+        alert("message sent");
+    }catch(error){
+        alert("Error! Please try again");
+    }
+
+
+  })
+
+
+});
 
 
 
@@ -280,44 +293,9 @@ onAuthStateChanged(auth , (user)=>{
 
 
 
-// if (loginLink) {
-//     loginLink.addEventListener("click", (e) => {
-//         e.preventDefault()
-//         authModel.style.display = "flex";
-//     });
-// }
 
-// closeLink.addEventListener("click", () => {
-//     authModel.style.display = "none";
-// });
 
-// window.addEventListener("click", (e) => {
-//     if (e.target == authModel) {
-//         authModel.style.display = "none";
-//     }
-// });
 
-// // login
-
-// const signup = document.querySelector("#signup-btn");
-// signup.addEventListener("click", (e) => {
-//     e.preventDefault();
-//     //inputs
-//     const email = document.querySelector("#auth-email").value;
-//     const password = document.querySelector("#auth-password").value;
-//     createUserWithEmailAndPassword(auth, email, password)
-//         .then((userCredential) => {
-
-//             const user = userCredential.user;
-//             alert("Signed up");
-//         })
-//         .catch((error) => {
-//             const errorCode = error.code;
-//             const errorMessage = error.message;
-//             alert(errorMessage);
-//         });
-
-// })
 
 
 
